@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אמנות כתיבת הפרומפטים בפסיכותרפיה</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        :root {
+            --primary-color: #4facfe;
+            --secondary-color: #00f2fe;
+            --background-dark: #1a1a2e;
+            --background-medium: #16213e;
+            --error-color: #fe4f4f;
+            --success-color: #4ffeaf;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--background-dark), var(--background-medium), var(--background-dark));
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+.smart-framework {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+        }
+
+        .smart-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .smart-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .smart-description-small {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .smart-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .smart-level {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .smart-level i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .principle-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .principle-card.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .principle-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-left: 1rem;
+            min-width: 60px;
+        }
+
+        .principle-title {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .principle-title i {
+            margin-left: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .principle-content {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+.example-box, .mistakes-box {
+            background: rgba(79, 172, 254, 0.1);
+            border-right: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .mistakes-box {
+            background: rgba(254, 79, 79, 0.1);
+            border-right-color: var(--error-color);
+        }
+
+        .box-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .box-title i {
+            margin-left: 0.5rem;
+        }
+
+        .example-content, .mistakes-content {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .copy-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .copy-button i {
+            margin-left: 0.5rem;
+        }
+
+        .copy-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .copy-button.copied {
+            background: var(--success-color);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .principle-card {
+                padding: 1.5rem;
+            }
+
+            .smart-levels {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>אמנות כתיבת הפרומפטים</h1>
+            <p class="smart-description">
+                מדריך מקיף ליצירת פרומפטים אפקטיביים בפסיכותרפיה, מבוסס על מסגרת SMART
+<p class="smart-description-small">
+                מדריך זה נבנה על ידי אלעד רפואה ומבוסס על מודל SMART שפותח על ידי חברי מכון ה"שלישי המלאכותי": יובל הבר, פרופ' זוהר אליוסף ואלעד רפואה.
+            </p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="smart-framework">
+            <h2 class="smart-title">מסגרת SMART</h2>
+            <p class="smart-description">
+                מסגרת SMART מציעה חמישה שלבים היררכיים לשילוב AI בפסיכותרפיה:
+            </p>
+            <div class="smart-levels">
+                <div class="smart-level">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Supporting</h3>
+                    <p>תמיכה והדרכה</p>
+                </div>
+                <div class="smart-level">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Mentoring</h3>
+                    <p>ליווי מקצועי</p>
+                </div>
+                <div class="smart-level">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Assisting</h3>
+                    <p>סיוע למטופלים</p>
+                </div>
+                <div class="smart-level">
+                    <i class="fas fa-eye"></i>
+                    <h3>Reflecting</h3>
+                    <p>תצפית ומשוב</p>
+                </div>
+                <div class="smart-level">
+                    <i class="fas fa-magic"></i>
+                    <h3>Transforming</h3>
+                    <p>שינוי תהליכים</p>
+                </div>
+            </div>
+        </section>
+
+
+<div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">01</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-bullseye"></i>
+                    הגדרת מטרה ותפקיד
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>הגדירו בבירור את המטרה ותפקיד ה-AI בהתאם למסגרת SMART.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                        "פעל כמדריך מומחה בCBT. אני מעביר סדנת הכשרה למתמחים בנושא התערבויות בחרדה חברתית. אשמח לקבל מערך שיעור הכולל הסברים תיאורטיים ותרגולים מעשיים."
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                        <li>הגדרת תפקיד כללית מדי ("תהיה פסיכולוג")</li>
+                        <li>בקשת ייעוץ טיפולי ישיר</li>
+                        <li>חוסר התאמה לרמת ה-SMART המתאימה</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+<!-- כרטיסיה 2 - הגדרת תשומות ותפוקות -->
+        <div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">02</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-exchange-alt"></i>
+                    הגדרת תשומות ותפוקות
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>הגדירו במדויק מה המידע שאתם מספקים ומה אתם מצפים לקבל בחזרה.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                        "אספק לך מאמר מחקרי על CBT בחרדה חברתית. אני מבקש: 1. סיכום של המתודולוגיה והממצאים המרכזיים 2. השלכות להכשרת מטפלים 3. הצעות ליישום בהדרכה קלינית."
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                        <li>בקשות עמומות ללא מבנה ברור</li>
+                        <li>חוסר פירוט של סוג המידע הנדרש</li>
+                        <li>ציפייה לתוצרים שלא הוגדרו מראש</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- כרטיסיה 3 - מתן הקשר מקצועי -->
+        <div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">03</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-sitemap"></i>
+                    מתן הקשר מקצועי
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>ספקו הקשר מקצועי מפורט לבקשתכם, כולל רקע רלוונטי ומטרות ספציפיות.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                        "אני מרצה בקורס מתקדם על CBT. המשתתפים הם מטפלים בעלי 3-5 שנות ניסיון. בשיעור הבא נתמקד בהתאמת פרוטוקולים טיפוליים. ,תהיה מדריך לCBT - אשמח להצעות לתרגילים שמדגימים גמישות בהתאמת התערבויות."
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                        <li>חוסר מידע על רמת הידע של קהל היעד</li>
+                        <li>העדר הקשר מקצועי ספציפי</li>
+                        <li>חוסר בהירות לגבי מטרת השימוש במידע</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- כרטיסיה 4 - שימוש בחומרי עזר -->
+        <div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">04</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-book"></i>
+                    שימוש בחומרי עזר
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>הפנו וצרפו חומרים תיאורטיים ומחקריים רלוונטיים להעשרת הדיון.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                        "אני מצרף כאן את הפרוטוקול הטיפולי המעודכן של בארלו, אתה מדריך בגישה זו שמומחה בהסברה דידקטית ותסביר לי את עיקרי הפרוטוקול."
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                        <li>שימוש בחומרים לא מעודכנים</li>
+                        <li>הפניה למקורות לא רלוונטיים</li>
+                        <li>חוסר אינטגרציה בין מקורות מידע</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- כרטיסיה 5 - שיפור איטרטיבי -->
+        <div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">05</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-sync-alt"></i>
+                    שיפור איטרטיבי
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>שפרו את הפרומפט בהדרגה לקבלת תוצאות מדויקות יותר.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                        "גרסה 1: הסבר על חרדה חברתית
+גרסה 2: הסבר על חרדה חברתית בהקשר של הכשרת מטפלים מתחילים
+גרסה 3: פעל כמדריך בכיר בCBT והסבר על הערכה וטיפול בחרדה חברתית. התמקד בנקודות מפתח להכשרת מטפלים מתחילים, כולל טעויות נפוצות ודרכי התמודדות."
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                        <li>קפיצה מהירה מדי לפרומפט מורכב</li>
+                        <li>חוסר למידה מתגובות קודמות</li>
+                        <li>אי-שמירה על העקביות בשיפורים</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- כרטיסיה 6 - בקשת חלופות -->
+        <div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">06</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-random"></i>
+                    בקשת חלופות
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>בקשו מספר אפשרויות או גישות שונות לאותה מטרה.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                        "הצע 3 גישות שונות להוראת נושא החשיפה בCBT למתמחים: 
+1. גישה תיאורטית-פרונטלית 
+2. גישה התנסותית-חווייתית 
+3. גישה מבוססת-מקרים 
+עבור כל גישה, פרט יתרונות, חסרונות והמלצות ליישום."
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                        <li>בקשה לחלופות ללא קריטריונים להשוואה</li>
+                        <li>חוסר הגדרה של מספר החלופות הרצוי</li>
+                        <li>אי-בקשת ניתוח השוואתי</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- כרטיסיה 7 - אימות ובדיקה -->
+        <div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">07</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-check-double"></i>
+                    אימות ובדיקה
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>בקשו מה-AI לאמת ולבדוק את המידע והמקורות.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                        "לאחר שתציג את ההתערבויות המומלצות, אנא: 
+1. ציין את הבסיס המחקרי לכל התערבות
+2. דרג את רמת הראיות המחקריות
+3. הצג מגבלות או סייגים שיש לקחת בחשבון
+4. הצע דרכים לניטור יעילות ההתערבות"
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                        <li>קבלת מידע ללא בקשת אימות</li>
+                        <li>חוסר בקשה למקורות ואסמכתאות</li>
+                        <li>תשומת לב - עליכם לבדוק גם בעצמכם!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- כרטיסיה 8 - שאילת שאלות -->
+        <div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">08</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-question-circle"></i>
+                    עידוד שאילת שאלות
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>עודדו את ה-AI לשאול שאלות הבהרה כשצריך.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                    "לפני שתתחיל בהכנת מערך ההדרכה, אנא שאל שאלות הבהרה שחסרות לך. אם יש פרטים נוספים שחסרים לך, אנא שאל."
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                        <li>הנחת הנחות ללא בירור</li>
+                        <li>מתן מידע חלקי ללא אפשרות לשאלות</li>
+                        <li>התעלמות מבקשות הבהרה</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+     <!-- כרטיסיה 9 - יישום מעשי -->
+        <div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">9</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-tools"></i>
+                    יישום מעשי
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>בקשו דוגמאות והנחיות מעשיות ליישום.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                        "לאחר שתציג את העקרונות התיאורטיים, אנא ספק:
+1. דוגמא מפורטת ליישום בהדרכה קבוצתית
+2. תסריט לתרגול עם משתתפים
+3. רשימת משימות מעשיות למשתתפים
+4. כלים להערכת התקדמות
+כל דוגמא צריכה לכלול הוראות צעד-אחר-צעד."
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                     
+                        <li>חוסר פירוט בהנחיות היישום</li>
+                        <li>היעדר דוגמאות קונקרטיות</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- כרטיסיה 10 - הבהרות אתיות -->
+        <div class="principle-card">
+            <div class="card-header">
+                <div class="principle-number">10</div>
+                <h2 class="principle-title">
+                    <i class="fas fa-shield-alt"></i>
+                    הבהרות אתיות
+                </h2>
+            </div>
+            <div class="principle-content">
+                <p>הקפידו על גבולות אתיים ברורים בשימוש ב-AI.</p>
+                
+                <div class="example-box">
+                    <div class="box-title">
+                        <i class="fas fa-lightbulb"></i>
+                        דוגמה לפרומפט מוצלח
+                    </div>
+                    <div class="example-content">
+                        "אני מבקש סיוע בניתוח מקרה לצורך למידה והדרכה בלבד. המקרה הוא היפותטי ואינו כולל פרטים מזהים. אנא התייחס להיבטים האתיים והמקצועיים הרלוונטיים בתשובתך, והדגש מתי נדרשת התייעצות עם מדריך או צוות."
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'example')">
+                        <i class="fas fa-copy"></i>
+                        העתק דוגמה
+                    </button>
+                </div>
+
+                <div class="mistakes-box">
+                    <div class="box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        טעויות נפוצות
+                    </div>
+                    <ul class="mistakes-content">
+                        <li>שיתוף מידע מזהה על מטופלים</li>
+                        <li>בקשת המלצות טיפוליות ישירות</li>
+                        <li>שימוש ב-AI כתחליף להדרכה מקצועית</li>
+                        <li>חוסר הבחנה בין למידה לטיפול</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+   
+
+    </div>
+<script>
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate cards on scroll
+        document.querySelectorAll('.principle-card').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top bottom-=100",
+                    toggleClass: "active",
+                    once: true
+                },
+                duration: 1,
+                delay: index * 0.2
+            });
+        });
+
+        // Copy to clipboard functionality
+        function copyToClipboard(button, type) {
+            const card = button.closest('.principle-card');
+            const content = card.querySelector(`.${type}-content`).textContent.trim();
+            
+            navigator.clipboard.writeText(content).then(() => {
+                button.classList.add('copied');
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> הועתק!';
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = originalHTML;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
